@@ -1,20 +1,18 @@
+import { useState } from 'react';
 import './App.css';
+import SignUp from './components/Sign-up';
+import Success from './components/Success';
 
 function App() {
+  const [submitted, setSubmitted] = useState(false);
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
+
   return (
-    <>
-      <main>
-        {/* <!-- Sign-up form start --> */}
-        Stay updated! Join 60,000+ product managers receiving monthly updates
-        on: Product discovery and building what matters Measuring to ensure
-        updates are a success And much more! Email address email@company.com
-        Subscribe to monthly newsletter
-        {/* <!-- Sign-up form end --> */}
-        {/* <!-- Success message start --> */}
-        Thanks for subscribing! A confirmation email has been sent to
-        ash@loremcompany.com. Please open it and click the button inside to
-        confirm your subscription. Dismiss message
-        {/* <!-- Success message end --> */}
+    <div className="content-grid">
+      <main className="feature">
+        {submitted === true ? <SignUp /> : <Success />}
       </main>
       <footer>
         <div className="attribution">
@@ -30,7 +28,7 @@ function App() {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 

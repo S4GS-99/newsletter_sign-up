@@ -1,68 +1,89 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* *COLORS* */
+  /* PRIMARY */
+  --tomato: #ff6257;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* NEUTRAL */
+  --dark-slate-grey: hsl(234, 29%, 20%);
+  --charcoal-grey: hsl(235, 18%, 26%);
+  --grey: hsl(231, 7%, 60%);
+  --white: hsl(0, 0%, 100%);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* *FONT* */
+  font-size: 16px;
+
+  .roboto-regular {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .roboto-bold {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.content-grid {
+  /* INLINE PADDING AND MAXIMUM SIZE OF EACH AREA*/
+  /* -- IF NEEDED, CHANGE THE VALUES FROM HERE -- */
+  --padding-inline: clamp(1rem, 6vw, 3rem);
+  --content-max-width: 64ch;
+  --breakout-max-width: 80ch;
+  --feature-max-width: 96ch;
+  /* -- IF NEEDED, CHANGE THE VALUES UNTIL HERE -- */
+
+  /* !DO NOT CHANGE ANYTHING FROM HERE */
+
+  /* SIZE OF BREAKOUT AND FEATURE AREAS */
+  --breakout-size: calc(
+    ((var(--breakout-max-width) - var(--content-max-width)) / 2)
+  );
+  --feature-size: calc(
+    ((var(--feature-max-width) - var(--content-max-width)) / 2)
+  );
+
+  /* COLUMNS INLINE SIZE	 */
+  --full-width: minmax(var(--padding-inline), 1fr);
+  --content: min(100% - (var(--padding-inline) * 2), var(--content-max-width));
+  --breakout: minmax(0, var(--breakout-size));
+  --feature: minmax(0, var(--feature-size));
+
+  /* GRID'S NAMED LINES */
+  display: grid;
+  grid-template-columns:
+    [full-width-start] var(--full-width)
+    [feature-start] var(--feature)
+    [breakout-start] var(--breakout)
+    [content-start] var(--content) [content-end]
+    var(--breakout) [breakout-end]
+    var(--feature) [feature-end]
+    var(--full-width) [full-width-end];
 }
-a:hover {
-  color: #535bf2;
+
+.content-grid > :not(.breakout, full-width),
+.full-width > :not(.breakout, full-width) {
+  grid-column: content;
 }
+
+.content-grid > .breakout {
+  grid-column: breakout;
+}
+
+.content-grid > .feature {
+  grid-column: feature;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+/* !DO NOT CHANGE ANYTHING UNTIL HERE */
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  background-color: var(--charcoal-grey);
 }

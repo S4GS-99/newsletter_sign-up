@@ -4,10 +4,10 @@
   --tomato: #ff6257;
 
   /* NEUTRAL */
-  --dark-slate-grey: hsl(234, 29%, 20%);
-  --charcoal-grey: hsl(235, 18%, 26%);
-  --grey: hsl(231, 7%, 60%);
-  --white: hsl(0, 0%, 100%);
+  --dark-slate-grey: #242742;
+  --charcoal-grey: #36384e;
+  --grey: #9294a0;
+  --white: #ffffff;
 
   /* *FONT* */
   font-size: 16px;
@@ -50,8 +50,11 @@
   --breakout: minmax(0, var(--breakout-size));
   --feature: minmax(0, var(--feature-size));
 
-  /* GRID'S NAMED LINES */
   display: grid;
+  height: 90vh;
+  align-items: center;
+
+  /* GRID'S NAMED LINES */
   grid-template-columns:
     [full-width-start] var(--full-width)
     [feature-start] var(--feature)
@@ -78,12 +81,22 @@
 .content-grid > .full-width {
   grid-column: full-width;
 
-  display: grid;
-  grid-template-columns: inherit;
+  /* display: grid;
+  grid-template-columns: inherit; */
 }
 
 /* !DO NOT CHANGE ANYTHING UNTIL HERE */
 
 body {
   background-color: var(--charcoal-grey);
+
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0;
+    margin: 0;
+  }
 }

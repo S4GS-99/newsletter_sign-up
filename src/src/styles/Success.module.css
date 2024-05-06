@@ -1,0 +1,73 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'content';
+  gap: 2rem;
+  align-items: center;
+
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+
+  .header {
+    grid-area: header;
+    height: 100%;
+
+    display: flex;
+    align-items: end;
+  }
+
+  .content {
+    grid-area: content;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    .body {
+      .heading {
+        font-size: 2.5rem;
+        margin-top: 0;
+      }
+
+      .text {
+        margin: 0;
+      }
+    }
+
+    .email {
+    }
+
+    .button {
+      width: 100%;
+      color: var(--white);
+      background-color: var(--dark-slate-grey);
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background: linear-gradient(to right, #ff4e73 0%, #ff6341 100%);
+        box-shadow: -0 10px 16px #ff999a;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 2rem;
+    height: 90vh;
+    border-radius: 0;
+  }
+}

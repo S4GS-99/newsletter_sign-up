@@ -1,0 +1,118 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'content image';
+  gap: 1rem;
+  align-items: center;
+
+  background-color: var(--white);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  color: var(--dark-slate-grey);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  .content {
+    grid-area: content;
+    text-align: left;
+    padding: 0 2rem;
+
+    .heading {
+      font-size: 3.5rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .list {
+      font-weight: 500;
+      list-style-image: url('../assets/images/icon-list.svg');
+      padding-left: 1.5rem;
+
+      .item {
+        padding: 0.25rem;
+      }
+    }
+
+    .signUp {
+      .label {
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .email,
+      input[type='text'] {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.25rem 0 1rem 0;
+        font-size: 1rem;
+        border: 1px solid var(--grey);
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &:focus {
+          border: 1px solid var(--dark-slate-grey);
+        }
+      }
+
+      .submit,
+      [type='submit'] {
+        width: 100%;
+        color: var(--white);
+        background-color: var(--dark-slate-grey);
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          background: linear-gradient(to right, #ff4e73 0%, #ff6341 100%);
+          box-shadow: -0 10px 16px #ff999a;
+        }
+      }
+    }
+  }
+
+  .imageContainer {
+    grid-area: image;
+  }
+}
+
+/* Adjust for mobile view */
+@media (max-width: 768px) {
+  .card {
+    padding: 0;
+    border-radius: 0;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'image'
+      'content';
+
+    .content {
+      padding: 1rem;
+
+      .heading {
+        font-size: 2.5rem;
+        margin: 0;
+      }
+
+      .signUp {
+        font-size: 0.75rem;
+        margin-top: 2rem;
+      }
+    }
+
+    .imageContainer {
+      padding: 0;
+      margin: 0;
+
+      .image {
+        width: 100%;
+      }
+    }
+  }
+}

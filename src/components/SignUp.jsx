@@ -5,6 +5,7 @@ import mobile from '../assets/images/sign-up-mobile.svg';
 
 export default function SignUp({ onSubmit }) {
   const [imageSrc, setImageSrc] = useState(desktop);
+  const [isIncorrect, setIsIncorrect] = useState(false);
 
   useEffect(() => {
     const updateImageSrc = () => {
@@ -44,22 +45,31 @@ export default function SignUp({ onSubmit }) {
           className={form.signUp}
           onSubmit={(e) => {
             e.preventDefault();
-            const emailInput = e.target.elements.email;
-            const email = emailInput.value;
-            const isValid = validateEmail(email);
-            onSubmit(e, isValid); // Call the handleSubmit function with isValid
+
+            if (!isIncorrect) {
+              onSubmit(e, true);
+            } else {
+              return;
+            }
           }}
         >
-          <label className={form.label} htmlFor="email">
+          <label
+            className={`${form.label} ${isIncorrect ? form.incorrect : ''}`}
+            htmlFor="email"
+          >
             Email Address
           </label>
-          <br />
           <input
-            className={form.email}
+            className={`${form.email} ${isIncorrect ? form.incorrect : ''}`}
             type="email"
             name="email"
             placeholder="email@company"
             required
+            onChange={(e) => {
+              const email = e.target.value;
+              const isValid = validateEmail(email);
+              setIsIncorrect(!isValid);
+            }}
           />
           <button type="submit" className={form.submit}>
             Subscribe to monthly newsletter

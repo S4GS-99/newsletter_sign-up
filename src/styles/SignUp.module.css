@@ -39,10 +39,23 @@
       .label {
         font-size: 0.75rem;
         font-weight: 700;
+        display: block;
+        position: relative;
+
+        &.incorrect {
+          &::after {
+            content: 'Valid email required';
+            position: absolute;
+            right: 0;
+            top: 0;
+            /* transform: translateY(-50%); */
+            color: #d37b7e;
+          }
+        }
       }
 
       .email,
-      input[type='text'] {
+      input[type='email'] {
         width: 100%;
         padding: 1rem;
         margin: 0.25rem 0 1rem 0;
@@ -54,6 +67,12 @@
 
         &:focus {
           border: 1px solid var(--dark-slate-grey);
+        }
+
+        &.incorrect {
+          background-color: #ffe8e6;
+          border: 2px solid #d37b7e;
+          color: #d37b7e;
         }
       }
 

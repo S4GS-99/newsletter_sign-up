@@ -10,14 +10,12 @@ function App() {
   const handleSubmit = (event, isValid) => {
     event.preventDefault();
 
-    console.log(isValid);
-
     if (isValid) {
       setTimeout(() => {
         setSubmitted(true);
-      }, 500);
+      }, 250);
     } else {
-      alert('Invalid Email');
+      return;
     }
   };
 

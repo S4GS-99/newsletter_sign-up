@@ -18,6 +18,12 @@ export default function SignUp({ onSubmit }) {
     return () => window.removeEventListener('resize', updateImageSrc);
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return regex.test(email);
+  };
+
   return (
     <div className={form.card} id="sign-up">
       <div className={form.content}>
@@ -34,18 +40,28 @@ export default function SignUp({ onSubmit }) {
           </li>
           <li className={form.item}>And much more!</li>
         </ul>
-        <form className={form.signUp}>
+        <form
+          className={form.signUp}
+          onSubmit={(e) => {
+            e.preventDefault();
+            const emailInput = e.target.elements.email;
+            const email = emailInput.value;
+            const isValid = validateEmail(email);
+            onSubmit(e, isValid); // Call the handleSubmit function with isValid
+          }}
+        >
           <label className={form.label} htmlFor="email">
             Email Address
           </label>
           <br />
           <input
             className={form.email}
-            type="text"
+            type="email"
             name="email"
             placeholder="email@company"
+            required
           />
-          <button type="submit" className={form.submit} onClick={onSubmit}>
+          <button type="submit" className={form.submit}>
             Subscribe to monthly newsletter
           </button>
         </form>

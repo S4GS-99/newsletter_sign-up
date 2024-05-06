@@ -6,12 +6,19 @@ import Success from './components/Success';
 function App() {
   const [submitted, setSubmitted] = useState(false);
   const [isFull, setFull] = useState('feature');
-  const handleSubmit = (event) => {
+
+  const handleSubmit = (event, isValid) => {
     event.preventDefault();
 
-    setTimeout(() => {
-      setSubmitted(true);
-    }, 500);
+    console.log(isValid);
+
+    if (isValid) {
+      setTimeout(() => {
+        setSubmitted(true);
+      }, 500);
+    } else {
+      alert('Invalid Email');
+    }
   };
 
   useEffect(() => {

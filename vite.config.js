@@ -10,4 +10,5 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['src/tests/setup.js'],
   },
+  base: '/newsletter_sign-up/',
 });

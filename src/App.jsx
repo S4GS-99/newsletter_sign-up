@@ -6,12 +6,22 @@ import Success from './components/Success';
 function App() {
   const [submitted, setSubmitted] = useState(false);
   const [isFull, setFull] = useState('feature');
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [email, setEmail] = useState('');
 
+  const handleSubmit = (emailValue, isValid) => {
+    if (isValid) {
+      setTimeout(() => {
+        setEmail(emailValue);
+        setSubmitted(true);
+      }, 250);
+    } else {
+      return;
+    }
+  };
+  const handleDismiss = () => {
     setTimeout(() => {
-      setSubmitted(true);
-    }, 500);
+      setSubmitted(false);
+    }, 250);
   };
 
   useEffect(() => {
@@ -29,7 +39,11 @@ function App() {
   return (
     <div className="content-grid">
       <main className={isFull}>
-        {submitted === false ? <SignUp onSubmit={handleSubmit} /> : <Success />}
+        {submitted === false ? (
+          <SignUp onSubmit={handleSubmit} />
+        ) : (
+          <Success onClick={handleDismiss} userEmail={email} />
+        )}
       </main>
     </div>
   );

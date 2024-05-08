@@ -5,6 +5,7 @@ import mobile from '../assets/images/sign-up-mobile.svg';
 
 export default function SignUp({ onSubmit }) {
   const [imageSrc, setImageSrc] = useState(desktop);
+  const [isIncorrect, setIsIncorrect] = useState(false);
 
   useEffect(() => {
     const updateImageSrc = () => {
@@ -17,6 +18,12 @@ export default function SignUp({ onSubmit }) {
     // Cleanup function to remove the event listener when the component unmounts
     return () => window.removeEventListener('resize', updateImageSrc);
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return regex.test(email);
+  };
 
   return (
     <div className={form.card} id="sign-up">
@@ -34,18 +41,39 @@ export default function SignUp({ onSubmit }) {
           </li>
           <li className={form.item}>And much more!</li>
         </ul>
-        <form className={form.signUp}>
-          <label className={form.label} htmlFor="email">
+        <form
+          className={form.signUp}
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const email = e.target.elements.email.value;
+
+            if (!isIncorrect) {
+              onSubmit(email.toLowerCase(), true);
+            } else {
+              return;
+            }
+          }}
+        >
+          <label
+            className={`${form.label} ${isIncorrect ? form.incorrect : ''}`}
+            htmlFor="email"
+          >
             Email Address
           </label>
-          <br />
           <input
-            className={form.email}
-            type="text"
+            className={`${form.email} ${isIncorrect ? form.incorrect : ''}`}
+            type="email"
             name="email"
             placeholder="email@company"
+            required
+            onChange={(e) => {
+              const email = e.target.value;
+              const isValid = validateEmail(email);
+              setIsIncorrect(!isValid);
+            }}
           />
-          <button type="submit" className={form.submit} onClick={onSubmit}>
+          <button type="submit" className={form.submit}>
             Subscribe to monthly newsletter
           </button>
         </form>

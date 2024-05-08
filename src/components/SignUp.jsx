@@ -47,7 +47,7 @@ export default function SignUp({ onSubmit }) {
             e.preventDefault();
 
             if (!isIncorrect) {
-              onSubmit(e, true);
+              onSubmit(true);
             } else {
               return;
             }

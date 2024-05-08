@@ -1,7 +1,7 @@
 import style from '../styles/Success.module.css';
 import IconSuccess from '../assets/images/icon-success.svg';
 
-export default function Success() {
+export default function Success({ onClick }) {
   return (
     <div className={style.card} id="success">
       <div className={style.header}>
@@ -17,7 +17,15 @@ export default function Success() {
             subscription.
           </p>
         </div>
-        <button className={style.button}>Dismiss message</button>
+        <button
+          className={style.button}
+          onClick={(e) => {
+            e.preventDefault();
+            onClick(e);
+          }}
+        >
+          Dismiss message
+        </button>
       </div>
     </div>
   );

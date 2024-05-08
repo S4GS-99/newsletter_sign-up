@@ -7,9 +7,7 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
   const [isFull, setFull] = useState('feature');
 
-  const handleSubmit = (event, isValid) => {
-    event.preventDefault();
-
+  const handleSubmit = (isValid) => {
     if (isValid) {
       setTimeout(() => {
         setSubmitted(true);
@@ -17,6 +15,11 @@ function App() {
     } else {
       return;
     }
+  };
+  const handleDismiss = () => {
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 250);
   };
 
   useEffect(() => {
@@ -34,7 +37,11 @@ function App() {
   return (
     <div className="content-grid">
       <main className={isFull}>
-        {submitted === false ? <SignUp onSubmit={handleSubmit} /> : <Success />}
+        {submitted === false ? (
+          <SignUp onSubmit={handleSubmit} />
+        ) : (
+          <Success onClick={handleDismiss} />
+        )}
       </main>
     </div>
   );

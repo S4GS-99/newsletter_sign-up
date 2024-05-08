@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     const updateSize = () => {
-      window.innerWidth > 1024 ? setFull('feature') : setFull('full-width');
+      window.innerWidth >= 1024 ? setFull('feature') : setFull('full-width');
     };
 
     window.addEventListener('resize', updateSize);

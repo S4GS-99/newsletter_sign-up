@@ -135,3 +135,9 @@
     }
   }
 }
+
+@media (min-width: 1044px) {
+  .card {
+    padding-right: 0;
+  }
+}

@@ -40,7 +40,7 @@ Screenshot in Mobile (375px) viewport
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://2g2-99.github.io/newsletter_sign-up/)
 
 ## My process
 

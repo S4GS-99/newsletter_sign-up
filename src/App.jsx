@@ -6,10 +6,12 @@ import Success from './components/Success';
 function App() {
   const [submitted, setSubmitted] = useState(false);
   const [isFull, setFull] = useState('feature');
+  const [email, setEmail] = useState('');
 
-  const handleSubmit = (isValid) => {
+  const handleSubmit = (emailValue, isValid) => {
     if (isValid) {
       setTimeout(() => {
+        setEmail(emailValue);
         setSubmitted(true);
       }, 250);
     } else {
@@ -40,7 +42,7 @@ function App() {
         {submitted === false ? (
           <SignUp onSubmit={handleSubmit} />
         ) : (
-          <Success onClick={handleDismiss} />
+          <Success onClick={handleDismiss} userEmail={email} />
         )}
       </main>
     </div>

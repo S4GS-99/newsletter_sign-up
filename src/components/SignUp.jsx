@@ -46,8 +46,10 @@ export default function SignUp({ onSubmit }) {
           onSubmit={(e) => {
             e.preventDefault();
 
+            const email = e.target.elements.email.value;
+
             if (!isIncorrect) {
-              onSubmit(true);
+              onSubmit(email.toLowerCase(), true);
             } else {
               return;
             }

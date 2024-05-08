@@ -1,7 +1,7 @@
 import style from '../styles/Success.module.css';
 import IconSuccess from '../assets/images/icon-success.svg';
 
-export default function Success({ onClick }) {
+export default function Success({ onClick, userEmail }) {
   return (
     <div className={style.card} id="success">
       <div className={style.header}>
@@ -12,9 +12,8 @@ export default function Success({ onClick }) {
           <h1 className={style.heading}>Thanks for subscribing!</h1>
           <p className={style.text}>
             A confirmation email has been sent to{' '}
-            <strong className={style.email}>ash@loremcompany.com</strong>.
-            Please open it and click the button inside to confirm your
-            subscription.
+            <strong className={style.email}>{userEmail}</strong>. Please open it
+            and click the button inside to confirm your subscription.
           </p>
         </div>
         <button
